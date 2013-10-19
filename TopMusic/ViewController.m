@@ -15,6 +15,7 @@
 @implementation ViewController
 
 dispatch_queue_t myQueue;
+dispatch_queue_t myQueueImg;
 
 - (void)viewDidLoad
 {
@@ -65,13 +66,23 @@ dispatch_queue_t myQueue;
         NSString *url100 = [songDic objectForKey:@"artworkUrl100"];
         [song setArtworkUrl100:[NSURL URLWithString:url100]];
         
-        // Colocamos las imagenes a Song (Modelo)
-        NSData *imgData30 = [NSData dataWithContentsOfURL:song.artworkUrl30];
-        UIImage *img30 = [UIImage imageWithData:imgData30];
-        
-        [song setArtwork30:img30];
-        
         [self.songs addObject:song];
+        
+        // Colocamos las imagenes a Song (Modelo)
+        myQueueImg = dispatch_queue_create("com.tekhne.TopMusicImg", NULL);
+        dispatch_async(myQueueImg, ^{
+            NSData *imgData30 = [NSData dataWithContentsOfURL:song.artworkUrl30];
+            UIImage *img30 = [UIImage imageWithData:imgData30];
+            
+            [song setArtwork30:img30];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSIndexPath *index = [NSIndexPath indexPathForRow:[self.songs indexOfObject:song] inSection:0];
+
+                [self.tblSongs reloadRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationNone];
+            });
+            
+        });
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -87,7 +98,7 @@ dispatch_queue_t myQueue;
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSLog(@"ESTOY PINTANDO LA CELDS");
+    NSLog(@"ESTOY PINTANDO LA CELDA");
     
     UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:@"songCell" forIndexPath:indexPath];
     
