@@ -57,11 +57,12 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"songCell"];
+    UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:@"songCell" forIndexPath:indexPath];
+    
+    // Esta es la forma anterior de Obtener una Celda
+    //UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"songCell"];
     
     NSDictionary *song = [self.songs objectAtIndex:indexPath.row];
-    
-    
     
     NSMutableString *detalle = [NSMutableString string];
     
