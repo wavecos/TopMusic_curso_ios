@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>DAABD39C-1DB9-496F-8683-F63FD9A140E1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TopMusic</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>8EAE63F6-DDBE-4A1F-A1EB-BAD7BF600CDE</key>
+		<string>ssh://github.com/wavecos/TopMusic_curso_ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TopMusic.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>8EAE63F6-DDBE-4A1F-A1EB-BAD7BF600CDE</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/wavecos/TopMusic_curso_ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8EAE63F6-DDBE-4A1F-A1EB-BAD7BF600CDE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8EAE63F6-DDBE-4A1F-A1EB-BAD7BF600CDE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TopMusic</string>
+		</dict>
+	</array>
+</dict>
+</plist>

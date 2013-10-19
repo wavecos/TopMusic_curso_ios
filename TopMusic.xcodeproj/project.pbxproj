@@ -21,6 +21,7 @@
 		80C498731809B0A70025696C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80C498551809B0A70025696C /* UIKit.framework */; };
 		80C4987B1809B0A70025696C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80C498791809B0A70025696C /* InfoPlist.strings */; };
 		80C4987D1809B0A70025696C /* TopMusicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C4987C1809B0A70025696C /* TopMusicTests.m */; };
+		80D516BB1812D098006A8093 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D516BA1812D098006A8093 /* Song.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		80C498781809B0A70025696C /* TopMusicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TopMusicTests-Info.plist"; sourceTree = "<group>"; };
 		80C4987A1809B0A70025696C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		80C4987C1809B0A70025696C /* TopMusicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopMusicTests.m; sourceTree = "<group>"; };
+		80D516B91812D098006A8093 /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
+		80D516BA1812D098006A8093 /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +122,8 @@
 				80C498671809B0A70025696C /* ViewController.m */,
 				80C498691809B0A70025696C /* Images.xcassets */,
 				80C498581809B0A70025696C /* Supporting Files */,
+				80D516B91812D098006A8093 /* Song.h */,
+				80D516BA1812D098006A8093 /* Song.m */,
 			);
 			path = TopMusic;
 			sourceTree = "<group>";
@@ -249,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80D516BB1812D098006A8093 /* Song.m in Sources */,
 				80C498681809B0A70025696C /* ViewController.m in Sources */,
 				80C498621809B0A70025696C /* AppDelegate.m in Sources */,
 				80C4985E1809B0A70025696C /* main.m in Sources */,
@@ -460,6 +466,7 @@
 				80C498821809B0A70025696C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		80C498831809B0A70025696C /* Build configuration list for PBXNativeTarget "TopMusicTests" */ = {
 			isa = XCConfigurationList;
@@ -468,6 +475,7 @@
 				80C498851809B0A70025696C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

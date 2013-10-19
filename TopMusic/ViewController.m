@@ -14,10 +14,13 @@
 
 @implementation ViewController
 
+dispatch_queue_t myQueue;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    self.songs = [[NSMutableArray alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -28,27 +31,54 @@
 
 #pragma march Search Methods
 - (IBAction)search:(id)sender {
+    myQueue = dispatch_queue_create("com.tekhne.TopMusic", NULL);
     
+    dispatch_async(myQueue, ^{
+        [self performSearch];
+    });
+}
+
+
+-(void) performSearch {
     NSLog(@"... Conectando al servicio de itunes...");
     
     NSString *urlString = @"https://itunes.apple.com/search?term=beatles&entity=song&limit=20";
-    
     NSURL *url = [NSURL URLWithString:urlString];
-    
     NSData *data = [NSData dataWithContentsOfURL:url];
-    
     
     NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     
-    //NSLog(@"recibido de itunes : %@", response);
-    
     NSLog(@"num de resultados: %@", [response objectForKey:@"resultCount"]);
     
-    self.songs = [response objectForKey:@"results"];
+    NSArray *songsFromJSON = [response objectForKey:@"results"];
     
-    [self.tblSongs reloadData];
+    // Iteramos el resultado Json y lo colocamos en el array de Songs (Modelo)
+    for (NSDictionary *songDic in songsFromJSON) {
+        Song *song = [[Song alloc] init];
+        [song setSongName:[songDic objectForKey:@"trackName"]];
+        [song setArtistName:[songDic objectForKey:@"artistName"]];
+        [song setAlbum:[songDic objectForKey:@"collectionName"]];
+        
+        NSString *url30 = [songDic objectForKey:@"artworkUrl30"];
+        [song setArtworkUrl30:[NSURL URLWithString:url30]];
+        
+        NSString *url100 = [songDic objectForKey:@"artworkUrl100"];
+        [song setArtworkUrl100:[NSURL URLWithString:url100]];
+        
+        // Colocamos las imagenes a Song (Modelo)
+        NSData *imgData30 = [NSData dataWithContentsOfURL:song.artworkUrl30];
+        UIImage *img30 = [UIImage imageWithData:imgData30];
+        
+        [song setArtwork30:img30];
+        
+        [self.songs addObject:song];
+    }
     
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tblSongs reloadData];
+    });
 }
+
 
 #pragma mark TableView Methods
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -57,28 +87,24 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    NSLog(@"ESTOY PINTANDO LA CELDS");
+    
     UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:@"songCell" forIndexPath:indexPath];
     
     // Esta es la forma anterior de Obtener una Celda
     //UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"songCell"];
     
-    NSDictionary *song = [self.songs objectAtIndex:indexPath.row];
+    Song *song = [self.songs objectAtIndex:indexPath.row];
     
     NSMutableString *detalle = [NSMutableString string];
     
-    [detalle appendString:[song objectForKey:@"artistName"]];
+    [detalle appendString:song.artistName];
     [detalle appendString:@" - "];
-    [detalle appendString:[song objectForKey:@"collectionName"]];
+    [detalle appendString:song.album];
     
-    // TODO resolver y tratar las imagenes en hilos!
-//    NSURL *urlImage = [song objectForKey:@"artworkUrl30"];
-//    NSData *dataImage = [NSData dataWithContentsOfURL:urlImage options:kNilOptions error:nil];
-//    
-//    UIImage *songImage = [UIImage imageWithData:dataImage];
-    
-    cell.textLabel.text = [song objectForKey:@"trackName"];
+    cell.textLabel.text = song.songName;
     cell.detailTextLabel.text = detalle;
-    //cell.imageView.image = songImage;
+    cell.imageView.image = song.artwork30;
     
     return cell;
     

@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Song.h"
 
 @interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tblSongs;
 
-@property (nonatomic, strong) NSArray *songs;
+@property (nonatomic, strong) NSMutableArray *songs;
 
 - (IBAction)search:(id)sender;
 
