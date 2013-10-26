@@ -21,6 +21,10 @@
 		80C498731809B0A70025696C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80C498551809B0A70025696C /* UIKit.framework */; };
 		80C4987B1809B0A70025696C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80C498791809B0A70025696C /* InfoPlist.strings */; };
 		80C4987D1809B0A70025696C /* TopMusicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C4987C1809B0A70025696C /* TopMusicTests.m */; };
+		80D3B0F7181BFEDB0011F6EA /* magnify.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D3B0F6181BFEDB0011F6EA /* magnify.png */; };
+		80D3B0FA181C07DF0011F6EA /* SongCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D3B0F9181C07DF0011F6EA /* SongCell.m */; };
+		80D3B0FD181C10190011F6EA /* SongDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D3B0FC181C10190011F6EA /* SongDetailViewController.m */; };
+		80D3B0FF181C18680011F6EA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80D3B0FE181C18680011F6EA /* AVFoundation.framework */; };
 		80D516BB1812D098006A8093 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D516BA1812D098006A8093 /* Song.m */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +58,12 @@
 		80C498781809B0A70025696C /* TopMusicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TopMusicTests-Info.plist"; sourceTree = "<group>"; };
 		80C4987A1809B0A70025696C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		80C4987C1809B0A70025696C /* TopMusicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopMusicTests.m; sourceTree = "<group>"; };
+		80D3B0F6181BFEDB0011F6EA /* magnify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magnify.png; sourceTree = "<group>"; };
+		80D3B0F8181C07DF0011F6EA /* SongCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongCell.h; sourceTree = "<group>"; };
+		80D3B0F9181C07DF0011F6EA /* SongCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongCell.m; sourceTree = "<group>"; };
+		80D3B0FB181C10190011F6EA /* SongDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongDetailViewController.h; sourceTree = "<group>"; };
+		80D3B0FC181C10190011F6EA /* SongDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongDetailViewController.m; sourceTree = "<group>"; };
+		80D3B0FE181C18680011F6EA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		80D516B91812D098006A8093 /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
 		80D516BA1812D098006A8093 /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80D3B0FF181C18680011F6EA /* AVFoundation.framework in Frameworks */,
 				80C498541809B0A70025696C /* CoreGraphics.framework in Frameworks */,
 				80C498561809B0A70025696C /* UIKit.framework in Frameworks */,
 				80C498521809B0A70025696C /* Foundation.framework in Frameworks */,
@@ -104,6 +115,7 @@
 		80C498501809B0A70025696C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				80D3B0FE181C18680011F6EA /* AVFoundation.framework */,
 				80C498511809B0A70025696C /* Foundation.framework */,
 				80C498531809B0A70025696C /* CoreGraphics.framework */,
 				80C498551809B0A70025696C /* UIKit.framework */,
@@ -115,6 +127,7 @@
 		80C498571809B0A70025696C /* TopMusic */ = {
 			isa = PBXGroup;
 			children = (
+				80D3B0F4181BFEDB0011F6EA /* Resources */,
 				80C498601809B0A70025696C /* AppDelegate.h */,
 				80C498611809B0A70025696C /* AppDelegate.m */,
 				80C498631809B0A70025696C /* Main.storyboard */,
@@ -124,6 +137,10 @@
 				80C498581809B0A70025696C /* Supporting Files */,
 				80D516B91812D098006A8093 /* Song.h */,
 				80D516BA1812D098006A8093 /* Song.m */,
+				80D3B0F8181C07DF0011F6EA /* SongCell.h */,
+				80D3B0F9181C07DF0011F6EA /* SongCell.m */,
+				80D3B0FB181C10190011F6EA /* SongDetailViewController.h */,
+				80D3B0FC181C10190011F6EA /* SongDetailViewController.m */,
 			);
 			path = TopMusic;
 			sourceTree = "<group>";
@@ -155,6 +172,22 @@
 				80C498791809B0A70025696C /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		80D3B0F4181BFEDB0011F6EA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				80D3B0F5181BFEDB0011F6EA /* icons */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		80D3B0F5181BFEDB0011F6EA /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				80D3B0F6181BFEDB0011F6EA /* magnify.png */,
+			);
+			path = icons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80C4986A1809B0A70025696C /* Images.xcassets in Resources */,
+				80D3B0F7181BFEDB0011F6EA /* magnify.png in Resources */,
 				80C4985C1809B0A70025696C /* InfoPlist.strings in Resources */,
 				80C498651809B0A70025696C /* Main.storyboard in Resources */,
 			);
@@ -258,6 +292,8 @@
 				80C498681809B0A70025696C /* ViewController.m in Sources */,
 				80C498621809B0A70025696C /* AppDelegate.m in Sources */,
 				80C4985E1809B0A70025696C /* main.m in Sources */,
+				80D3B0FD181C10190011F6EA /* SongDetailViewController.m in Sources */,
+				80D3B0FA181C07DF0011F6EA /* SongCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

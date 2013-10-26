@@ -21,6 +21,9 @@ dispatch_queue_t myQueueImg;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    self.txtSearch.delegate = self;
+    
     self.songs = [[NSMutableArray alloc] init];
 }
 
@@ -32,6 +35,9 @@ dispatch_queue_t myQueueImg;
 
 #pragma march Search Methods
 - (IBAction)search:(id)sender {
+    
+    [self.txtSearch resignFirstResponder];
+    
     myQueue = dispatch_queue_create("com.tekhne.TopMusic", NULL);
     
     dispatch_async(myQueue, ^{
@@ -43,7 +49,17 @@ dispatch_queue_t myQueueImg;
 -(void) performSearch {
     NSLog(@"... Conectando al servicio de itunes...");
     
-    NSString *urlString = @"https://itunes.apple.com/search?term=beatles&entity=song&limit=20";
+    NSString *searchCriteria = [self.txtSearch.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSMutableString *urlString = [[NSMutableString alloc] init];
+    
+    [urlString appendFormat:@"https://itunes.apple.com/search?term=%@", searchCriteria];
+    [urlString appendString:@"&entity=song&limit=20"];
+    
+    NSLog(@"url formado : %@", urlString);
+    
+    
+    //NSString *urlString = @"https://itunes.apple.com/search?term=beatles&entity=song&limit=20";
     NSURL *url = [NSURL URLWithString:urlString];
     NSData *data = [NSData dataWithContentsOfURL:url];
     
@@ -52,6 +68,8 @@ dispatch_queue_t myQueueImg;
     NSLog(@"num de resultados: %@", [response objectForKey:@"resultCount"]);
     
     NSArray *songsFromJSON = [response objectForKey:@"results"];
+    
+    self.songs = [[NSMutableArray alloc] init];
     
     // Iteramos el resultado Json y lo colocamos en el array de Songs (Modelo)
     for (NSDictionary *songDic in songsFromJSON) {
@@ -65,6 +83,10 @@ dispatch_queue_t myQueueImg;
         
         NSString *url100 = [songDic objectForKey:@"artworkUrl100"];
         [song setArtworkUrl100:[NSURL URLWithString:url100]];
+
+        NSString *urlPreviewSong = [songDic objectForKey:@"previewUrl"];
+        [song setPreviewSong:[NSURL URLWithString:urlPreviewSong]];
+
         
         [self.songs addObject:song];
         
@@ -100,7 +122,7 @@ dispatch_queue_t myQueueImg;
     
     NSLog(@"ESTOY PINTANDO LA CELDA");
     
-    UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:@"songCell" forIndexPath:indexPath];
+    SongCell *cell =[tableView dequeueReusableCellWithIdentifier:@"songCell" forIndexPath:indexPath];
     
     // Esta es la forma anterior de Obtener una Celda
     //UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"songCell"];
@@ -113,13 +135,31 @@ dispatch_queue_t myQueueImg;
     [detalle appendString:@" - "];
     [detalle appendString:song.album];
     
-    cell.textLabel.text = song.songName;
-    cell.detailTextLabel.text = detalle;
-    cell.imageView.image = song.artwork30;
+    cell.lblSongName.text = song.songName;
+    cell.lblArtistName.text = detalle;
+    cell.imgAlbum.image = song.artwork30;
     
     return cell;
     
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ( [segue.identifier isEqualToString:@"SongDetail"] ) {
+        
+        SongDetailViewController *sdc = [segue destinationViewController];
+        
+        NSIndexPath *idx = [self.tblSongs indexPathForSelectedRow];
+        
+        Song *song = [self.songs objectAtIndex:idx.row];
+
+        sdc.song = song;
+    }
+    
+    
+}
+
+
 
 
 
